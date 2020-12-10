@@ -1,9 +1,16 @@
+# (с) goodprogrammer.ru
+#
+# Контроллер, управляющий событиями
 class EventsController < ApplicationController
+  # Встроенный в девайз фильтр - посылает незалогиненного пользователя
   before_action :authenticate_user!, except: [:show, :index]
-  # Задаем объект @event для тех действий, где он нужен
+
+  # Задаем объект @event для экшена show
   before_action :set_event, only: [:show]
-  # Здесь уже перечисляем все действия, доступные конкретному юзеру
+
+  # Задаем объект @event от текущего юзера для других действий
   before_action :set_current_user_event, only: [:edit, :update, :destroy]
+
   def index
     @events = Event.all
   end
@@ -22,7 +29,9 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
 
     if @event.save
-      redirect_to @event, notice: 'Event was successfully created.'
+      # Используем сообщение из файла локалей ru.yml
+      # controllers -> events -> created
+      redirect_to @event, notice: I18n.t('controllers.events.created')
     else
       render :new
     end
@@ -30,7 +39,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
+      redirect_to @event, notice: I18n.t('controllers.events.updated')
     else
       render :edit
     end
@@ -38,12 +47,11 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_url, notice: 'Event was successfully destroyed.'
+    redirect_to events_url, notice: I18n.t('controllers.events.destroyed')
   end
 
   private
-  # Будем искать событие не среди всех,
-  # а только у текущего пользователя по id
+
   def set_current_user_event
     @event = current_user.events.find(params[:id])
   end
@@ -52,7 +60,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  # редактируем параметры события
   def event_params
     params.require(:event).permit(:title, :address, :datetime, :description)
   end

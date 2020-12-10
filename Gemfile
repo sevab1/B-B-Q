@@ -9,6 +9,8 @@ gem 'puma', '~> 4.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'listen', '~> 3.1.5'
 gem 'webpacker', '~> 4.0'
+gem 'devise-i18n'
+gem 'russian'
 
 # На продакшене у нас БД Postgres
 group :production do
