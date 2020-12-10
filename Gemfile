@@ -10,6 +10,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'listen', '~> 3.1.5'
 gem 'webpacker', '~> 4.0'
 
+# На продакшене у нас БД Postgres
+group :production do
+  gem 'pg'
+end
+
 group :development, :test do
   gem 'sqlite3', '~> 1.4'
   gem 'pry-rails'
