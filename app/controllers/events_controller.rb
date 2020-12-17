@@ -1,5 +1,4 @@
-# (с) goodprogrammer.ru
-#
+
 # Контроллер, управляющий событиями
 class EventsController < ApplicationController
   # Встроенный в девайз фильтр - посылает незалогиненного пользователя
@@ -16,6 +15,9 @@ class EventsController < ApplicationController
   end
 
   def show
+
+    # Болванка модели для формы добавления фотографии
+    @new_photo = @event.photos.build(params[:photo])
   end
 
   def new

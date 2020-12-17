@@ -12,6 +12,10 @@ gem 'webpacker', '~> 4.0'
 gem 'devise-i18n'
 gem 'russian'
 
+gem 'carrierwave'
+gem 'rmagick'
+
+
 # На продакшене у нас БД Postgres
 group :production do
   gem 'pg'
