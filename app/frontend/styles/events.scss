@@ -2,12 +2,17 @@
 (с) goodprogrammer.ru
 Наши дополнительные стили для красивого оформления плитки событий
  */
+.event {
+    overflow: hidden;
+}
 
 .event-info {
     position: relative;
     color: white;
     overflow: hidden;
     margin-bottom: 20px;
+    min-height: 250px;
+    max-height: 500px;
 }
 
 .event-background {
@@ -28,8 +33,14 @@
     -ms-filter: blur(5px);
 }
 
+.event-description {
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
 .event-description * {
     color: white;
+    //margin: 15px;
 }
 
 .event-description a {
@@ -48,4 +59,20 @@
     margin: 20px 0;
     width: 100%;
     height: 400px;
+}
+
+.event-photo {
+    margin-top: 5px;
+    text-align: center;
+}
+
+//.user-name > a {
+//  font-size: .7em;
+//}
+
+.map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
 }

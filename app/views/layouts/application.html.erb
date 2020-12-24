@@ -9,26 +9,6 @@
 
   <%= stylesheet_pack_tag "application", :media => "all" %>
 
-  <!-- For third-generation iPad with high-resolution Retina display: -->
-  <!-- Size should be 144 x 144 pixels -->
-  <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
-
-  <!-- For iPhone with high-resolution Retina display: -->
-  <!-- Size should be 114 x 114 pixels -->
-  <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
-
-  <!-- For first- and second-generation iPad: -->
-  <!-- Size should be 72 x 72 pixels -->
-  <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
-
-  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-  <!-- Size should be 57 x 57 pixels -->
-  <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
-
-  <!-- For all other devices -->
-  <!-- Size should be 32 x 32 pixels -->
-  <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
-
   <%= javascript_pack_tag 'application' %>
 
   <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -37,14 +17,18 @@
           type="text/javascript"></script>
   <![endif]-->
 </head>
-<body>
-<div class="navbar navbar-default navbar-static-top">
+
+  <body>
   <div class="container">
+  <div class="navbar navbar-expand-lg navbar-light bg-light">
     <%# Для вывода названия приложения используем хелпер I18n.t %>
     <%= link_to t('app.name'), root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div class="navbar-collapse collapse navbar-responsive-collapse">
-      <ul class="nav navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
           <li><%= link_to 'Профиль', current_user %></li>
           <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>
@@ -60,8 +44,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-9">
-      <%#= bootstrap_flash %>
-
+      <%= flash_messages %>
       <%= yield %>
     </div>
     <div class="col-lg-3">
